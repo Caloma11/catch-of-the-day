@@ -5,7 +5,8 @@ const Inventory = (props) => {
     return(
         <div className="inventory">
             <h2>Inventory</h2>
-            <AddFishForm addFish={props.addFish}/>
+            <AddFishForm addFish={props.addFish} loadSamples={props.loadSamples}/>
+            <button onClick={props.loadSamples}>Load Sample Fishes</button>
         </div>
     );
 }
