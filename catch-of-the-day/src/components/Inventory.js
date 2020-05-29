@@ -1,12 +1,13 @@
 import React from 'react';
+import AddFishForm from './AddFishForm.js';
 
-
-const Inventory = () => {
+const Inventory = (props) => {
     return(
         <div className="inventory">
-            <p>I'm the inventory</p>
+            <h2>Inventory</h2>
+            <AddFishForm addFish={props.addFish}/>
         </div>
-    )
+    );
 }
 
 export default Inventory;
