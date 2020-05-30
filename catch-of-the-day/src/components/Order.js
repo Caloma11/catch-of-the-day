@@ -5,6 +5,12 @@ class Order extends React.Component {
 
     renderOrder = (key) => {
         const fish = this.props.fishes[key];
+
+        // Make sure the fishes come from firebase before loading the order
+        if (!fish) {
+            return null;
+        }
+
         const count = this.props.order[key];
         const isAvailable = fish.status === 'available';
 
@@ -26,8 +32,6 @@ class Order extends React.Component {
 
 
     render() {
-
-        console.log(this.props)
 
         const orderIds = Object.keys(this.props.order);
         const total = orderIds.reduce((prevTotal,key) => {
