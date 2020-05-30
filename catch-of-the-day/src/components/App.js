@@ -13,12 +13,25 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+
+        const localStorageRef = localStorage.getItem(this.props.match.params.storeId)
+
+        if (localStorageRef) {
+            this.setState({order: JSON.parse(localStorageRef)})
+        }
+
+        console.log(this.state)
+
         this.ref = base.syncState(`${this.props.match.params.storeId}/fishes`, {
             context: this,
             state: 'fishes'
         });
     }
 
+
+    componentDidUpdate() {
+        localStorage.setItem(this.props.match.params.storeId, JSON.stringify(this.state.order))
+    }
 
     // Done automatically by firebase
     // componentWillMount() {
@@ -41,7 +54,6 @@ class App extends React.Component {
 
 
     addToOrder = (key) => {
-        console.log(key)
         // Take a copy of state
         const order = {...this.state.order};
         // Either add to the list or update it's value
