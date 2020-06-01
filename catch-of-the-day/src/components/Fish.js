@@ -23,7 +23,9 @@ class Fish extends React.Component {
                     </span>
                 </h3>
                 <p>{desc}</p>
+
                 <button  onClick={this.handleClick} disabled={!isAvailable}>{isAvailable ? 'Add To Cart' : 'Sold Out'}</button>
+
             </li>
         )
     }

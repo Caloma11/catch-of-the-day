@@ -4,10 +4,12 @@ import { formatPrice } from '../helpers';
 class Order extends React.Component {
 
     renderOrder = (key) => {
+        // Make sure the fishes come from firebase before loading the order
         const fish = this.props.fishes[key];
 
-        // Make sure the fishes come from firebase before loading the order
-        if (!fish) {
+        const isOnOrder = this.props.order[key] != null;
+
+        if (!fish || !isOnOrder) {
             return null;
         }
 
@@ -16,7 +18,10 @@ class Order extends React.Component {
 
         if (!isAvailable) {
             return(
-                <li key={key}>Sorry, {fish ? fish.name : 'fish'} is not longer available...</li>
+                <li key={key}>
+                    Sorry, {fish ? fish.name : 'fish'} is not longer available...
+                    <button onClick={() => this.props.removeFromOrder(key)}>&times;</button>
+                </li>
             )
         }
 
@@ -25,6 +30,8 @@ class Order extends React.Component {
                 {count} lbs {fish.name}
 
                 {formatPrice(count * fish.price)}
+                <button onClick={() => this.props.removeFromOrder(key)}>&times;</button>
+
             </li>
         )
     }
