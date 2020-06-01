@@ -74,6 +74,16 @@ class App extends React.Component {
 
     }
 
+    removeFromOrder = (key) => {
+        // Take a copy of state
+        const order = {...this.state.order};
+        // Set the fish we don't want to null (for firebase)
+        order[key] = null;
+        // Update state
+        this.setState({ order })
+    }
+
+
 
     deleteFish = (key) => {
         // Take a copy of state
@@ -83,6 +93,8 @@ class App extends React.Component {
         // Update state
         this.setState({ fishes })
     }
+
+
 
 
     loadSamples = () => {
@@ -96,7 +108,7 @@ class App extends React.Component {
                 <div className="menu">
                     <Header tagline={"Fresh Seafood Market"}/>
                     <ul className="fishes">
-                        {Object.keys(this.state.fishes).map((key) => <Fish addToOrder={this.addToOrder} fish={this.state.fishes[key]} key={key} index={key} /> )}
+                        {Object.keys(this.state.fishes).map((key) => <Fish addToOrder={this.addToOrder} fish={this.state.fishes[key]} key={key} index={key} order={this.state.order} removeFromOrder={this.removeFromOrder} /> )}
                     </ul>
                 </div>
                 <Order order={this.state.order} fishes={this.state.fishes}/>

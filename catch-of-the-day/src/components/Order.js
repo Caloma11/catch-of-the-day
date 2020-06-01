@@ -4,10 +4,12 @@ import { formatPrice } from '../helpers';
 class Order extends React.Component {
 
     renderOrder = (key) => {
+        // Make sure the fishes come from firebase before loading the order
         const fish = this.props.fishes[key];
 
-        // Make sure the fishes come from firebase before loading the order
-        if (!fish) {
+        const isOnOrder = this.props.order[key] != null;
+
+        if (!fish || !isOnOrder) {
             return null;
         }
 
