@@ -13,8 +13,6 @@ class Fish extends React.Component {
 
         const isAvailable = status === 'available';
 
-        const isOnCart = this.props.order[this.props.index] != null;
-
         return(
             <li className="menu-fish">
                 <img src={image} alt={name} />
@@ -26,10 +24,7 @@ class Fish extends React.Component {
                 </h3>
                 <p>{desc}</p>
 
-                {isOnCart
-                    ?<button  onClick={() => this.props.removeFromOrder(this.props.index)} >Remove From Cart</button>
-                    :<button  onClick={this.handleClick} disabled={!isAvailable}>{isAvailable ? 'Add To Cart' : 'Sold Out'}</button>
-                }
+                <button  onClick={this.handleClick} disabled={!isAvailable}>{isAvailable ? 'Add To Cart' : 'Sold Out'}</button>
 
             </li>
         )

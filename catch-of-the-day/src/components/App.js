@@ -108,10 +108,10 @@ class App extends React.Component {
                 <div className="menu">
                     <Header tagline={"Fresh Seafood Market"}/>
                     <ul className="fishes">
-                        {Object.keys(this.state.fishes).map((key) => <Fish addToOrder={this.addToOrder} fish={this.state.fishes[key]} key={key} index={key} order={this.state.order} removeFromOrder={this.removeFromOrder} /> )}
+                        {Object.keys(this.state.fishes).map((key) => <Fish addToOrder={this.addToOrder} fish={this.state.fishes[key]} key={key} index={key} /> )}
                     </ul>
                 </div>
-                <Order order={this.state.order} fishes={this.state.fishes}/>
+                <Order order={this.state.order} fishes={this.state.fishes} removeFromOrder={this.removeFromOrder}/>
                 <Inventory addFish={this.addFish} loadSamples={this.loadSamples} fishes={this.state.fishes} editFish={this.editFish} deleteFish={this.deleteFish} />
             </div>
         )
