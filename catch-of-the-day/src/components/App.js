@@ -64,9 +64,6 @@ class App extends React.Component {
             fishes: fishes
         })
 
-
-
-        console.log("piroca")
        console.log("state is" +  this.state.fishes)
     }
 
